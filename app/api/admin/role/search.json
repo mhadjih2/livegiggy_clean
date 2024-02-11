@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      },
+      {
+        "type": "text",
+        "name": "filter"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "",
+        "module": "auth",
+        "action": "restrict",
+        "options": {
+          "provider": "testing2",
+          "permissions": [
+            "Administrator"
+          ],
+          "loginUrl": "/login-page",
+          "forbiddenUrl": "/login-page"
+        }
+      },
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "select",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "roles",
+                "column": "*"
+              }
+            ],
+            "params": [],
+            "table": {
+              "name": "roles"
+            },
+            "primary": "role_id",
+            "joins": [],
+            "query": "select * from `roles`"
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "type": "number",
+            "name": "role_id"
+          },
+          {
+            "type": "text",
+            "name": "user_id"
+          },
+          {
+            "type": "text",
+            "name": "role"
+          }
+        ],
+        "outputType": "array"
+      }
+    ]
+  }
+}

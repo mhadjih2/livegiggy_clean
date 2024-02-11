@@ -1,0 +1,34 @@
+{
+  "Register.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "register.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "Registration.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "TermsAndConditions.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "Validate-Account.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "login-page.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "page-content.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "testpage.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  }
+}

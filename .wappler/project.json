@@ -1,0 +1,45 @@
+{
+  "hostingType": "wappler",
+  "projectServerModel": "node",
+  "runtime": "capacitor",
+  "projectName": "testing2",
+  "webRootFolder": "/public",
+  "useRouting": true,
+  "addBase": true,
+  "routingHandler": "node",
+  "projectLinksType": "site",
+  "targets": [
+    {
+      "name": "Development",
+      "remoteURL": "http://localhost:3000",
+      "access": "local",
+      "targetType": "wappler",
+      "databaseConnectionType": "sqlite",
+      "sqliteDbFile": "/database3.sqlite3"
+    }
+  ],
+  "activeTarget": "Development",
+  "projectType": "web",
+  "resources": {
+    "providers": {}
+  },
+  "designFramework": "bootstrap5",
+  "styleFile": "/css/style.css",
+  "assetsFolder": "/assets",
+  "userUploadsFolder": "/public/uploads",
+  "frameworks": [
+    {
+      "name": "appConnect",
+      "type": "local"
+    },
+    {
+      "name": "bootstrap5",
+      "type": "local"
+    },
+    {
+      "name": "fontawesome_4",
+      "type": "cdn"
+    }
+  ],
+  "extensions": []
+}

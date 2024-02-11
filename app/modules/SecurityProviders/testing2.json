@@ -1,0 +1,92 @@
+{
+  "name": "testing2",
+  "module": "auth",
+  "action": "provider",
+  "options": {
+    "secret": "4yt19KhHxhGo4zM",
+    "provider": "Database",
+    "connection": "db",
+    "users": {
+      "table": "user",
+      "identity": "user_id",
+      "username": "email",
+      "password": "password"
+    },
+    "permissions": {
+      "Administrator": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "A"
+          }
+        ]
+      },
+      "Member": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "P"
+          }
+        ]
+      },
+      "SEO": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "S"
+          }
+        ]
+      },
+      "Subscriber": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "M"
+          }
+        ]
+      },
+      "Author": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "T"
+          }
+        ]
+      },
+      "Editor": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "D"
+          }
+        ]
+      }
+    },
+    "passwordVerify": true,
+    "expires": ""
+  },
+  "meta": [
+    {
+      "name": "identity",
+      "type": "text"
+    }
+  ]
+}

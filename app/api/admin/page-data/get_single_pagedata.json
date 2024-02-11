@@ -1,0 +1,287 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "pagecontent_id"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "",
+        "module": "auth",
+        "action": "restrict",
+        "options": {
+          "provider": "testing2",
+          "permissions": [
+            "Administrator"
+          ],
+          "loginUrl": "/login-page",
+          "forbiddenUrl": "/login-page"
+        }
+      },
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "single",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "pagecontent",
+                "column": "*"
+              }
+            ],
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{$_GET.pagecontent_id}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "pagecontent"
+            },
+            "primary": "pagecontent_id",
+            "joins": [],
+            "query": "select * from `pagecontent` where `pagecontent`.`pagecontent_id` = ?",
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "pagecontent.pagecontent_id",
+                  "field": "pagecontent.pagecontent_id",
+                  "type": "double",
+                  "operator": "equal",
+                  "value": "{{$_GET.pagecontent_id}}",
+                  "data": {
+                    "table": "pagecontent",
+                    "column": "pagecontent_id",
+                    "type": "number",
+                    "columnObj": {
+                      "type": "increments",
+                      "primary": true,
+                      "unique": false,
+                      "nullable": false,
+                      "name": "pagecontent_id"
+                    }
+                  },
+                  "operation": "="
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            },
+            "sub": {
+              "pageimages": {
+                "type": "select",
+                "table": {
+                  "name": "pagecontent_pageimages",
+                  "alias": "pageimages"
+                },
+                "key": "pagecontent_id",
+                "columns": [
+                  {
+                    "table": "pageimages",
+                    "column": "imagelink"
+                  },
+                  {
+                    "table": "pageimages",
+                    "column": "imagecreator_id"
+                  },
+                  {
+                    "table": "pageimages",
+                    "column": "pageimages_id"
+                  },
+                  {
+                    "table": "pageimages",
+                    "column": "order"
+                  }
+                ],
+                "params": [],
+                "primary": "pageimages_id",
+                "joins": [],
+                "query": "select `imagelink`, `imagecreator_id`, `pageimages_id`, `order` from `pagecontent_pageimages` as `pageimages` order by `order` ASC",
+                "orders": [
+                  {
+                    "table": "pageimages",
+                    "column": "order",
+                    "direction": "ASC"
+                  }
+                ]
+              },
+              "pagevideos": {
+                "type": "select",
+                "table": {
+                  "name": "pagecontent_pagevideos",
+                  "alias": "pagevideos"
+                },
+                "key": "pagecontent_id",
+                "columns": [
+                  {
+                    "table": "pagevideos",
+                    "column": "videolink"
+                  },
+                  {
+                    "table": "pagevideos",
+                    "column": "videocreator_id"
+                  },
+                  {
+                    "table": "pagevideos",
+                    "column": "videoflagged"
+                  },
+                  {
+                    "table": "pagevideos",
+                    "column": "videoauthorized"
+                  },
+                  {
+                    "table": "pagevideos",
+                    "column": "videoonline"
+                  },
+                  {
+                    "table": "pagevideos",
+                    "column": "order"
+                  }
+                ],
+                "params": [],
+                "primary": "pagevideos_id",
+                "joins": [],
+                "orders": [
+                  {
+                    "table": "pagevideos",
+                    "column": "order",
+                    "direction": "ASC"
+                  }
+                ],
+                "query": "select `videolink`, `videocreator_id`, `videoflagged`, `videoauthorized`, `videoonline`, `order` from `pagecontent_pagevideos` as `pagevideos` order by `order` ASC"
+              }
+            },
+            "orders": []
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "type": "number",
+            "name": "pagecontent_id"
+          },
+          {
+            "type": "text",
+            "name": "pagetitle"
+          },
+          {
+            "type": "text",
+            "name": "pagedescription"
+          },
+          {
+            "type": "boolean",
+            "name": "pagecontentonline"
+          },
+          {
+            "type": "boolean",
+            "name": "pagecontentprivate"
+          },
+          {
+            "type": "datetime",
+            "name": "pagedatecreated"
+          },
+          {
+            "type": "datetime",
+            "name": "pagecontentdateedited"
+          },
+          {
+            "type": "datetime",
+            "name": "eventstartdatetime"
+          },
+          {
+            "type": "datetime",
+            "name": "eventenddatetime"
+          },
+          {
+            "type": "number",
+            "name": "latitude"
+          },
+          {
+            "type": "number",
+            "name": "longitude"
+          },
+          {
+            "type": "boolean",
+            "name": "geocoded"
+          },
+          {
+            "type": "number",
+            "name": "creator_id"
+          },
+          {
+            "type": "text",
+            "name": "pagetype"
+          },
+          {
+            "type": "number",
+            "name": "lasteditor_id"
+          },
+          {
+            "name": "pageimages",
+            "type": "array",
+            "sub": [
+              {
+                "type": "text",
+                "name": "imagelink"
+              },
+              {
+                "type": "number",
+                "name": "imagecreator_id"
+              },
+              {
+                "type": "number",
+                "name": "pageimages_id"
+              },
+              {
+                "type": "number",
+                "name": "order"
+              }
+            ]
+          },
+          {
+            "name": "pagevideos",
+            "type": "array",
+            "sub": [
+              {
+                "type": "text",
+                "name": "videolink"
+              },
+              {
+                "type": "text",
+                "name": "videocreator_id"
+              },
+              {
+                "type": "boolean",
+                "name": "videoflagged"
+              },
+              {
+                "type": "boolean",
+                "name": "videoauthorized"
+              },
+              {
+                "type": "boolean",
+                "name": "videoonline"
+              },
+              {
+                "type": "number",
+                "name": "order"
+              }
+            ]
+          }
+        ],
+        "outputType": "object"
+      }
+    ]
+  }
+}

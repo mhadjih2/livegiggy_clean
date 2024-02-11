@@ -1,0 +1,135 @@
+[
+  {
+    "name": "identity",
+    "module": "auth",
+    "action": "identify",
+    "options": {
+      "provider": "testing2"
+    },
+    "output": true,
+    "meta": []
+  },
+  {
+    "name": "query_who_am_i",
+    "module": "dbconnector",
+    "action": "single",
+    "options": {
+      "connection": "db",
+      "sql": {
+        "type": "select",
+        "columns": [
+          {
+            "table": "user",
+            "column": "first_name"
+          },
+          {
+            "table": "user",
+            "column": "last_name"
+          },
+          {
+            "table": "user",
+            "column": "email"
+          },
+          {
+            "table": "user",
+            "column": "user_id"
+          },
+          {
+            "table": "JOIN1",
+            "column": "role"
+          }
+        ],
+        "params": [
+          {
+            "operator": "equal",
+            "type": "expression",
+            "name": ":P1",
+            "value": "{{identity}}",
+            "test": ""
+          }
+        ],
+        "table": {
+          "name": "user"
+        },
+        "primary": "user_id",
+        "joins": [
+          {
+            "table": "roles",
+            "column": "*",
+            "alias": "JOIN1",
+            "type": "INNER",
+            "clauses": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "table": "JOIN1",
+                  "column": "user_id",
+                  "operator": "equal",
+                  "operation": "=",
+                  "value": {
+                    "table": "user",
+                    "column": "user_id"
+                  }
+                }
+              ]
+            },
+            "primary": "role_id"
+          }
+        ],
+        "wheres": {
+          "condition": "AND",
+          "rules": [
+            {
+              "id": "user.user_id",
+              "field": "user.user_id",
+              "type": "double",
+              "operator": "equal",
+              "value": "{{identity}}",
+              "data": {
+                "table": "user",
+                "column": "user_id",
+                "type": "number",
+                "columnObj": {
+                  "type": "increments",
+                  "primary": true,
+                  "unique": false,
+                  "nullable": false,
+                  "name": "user_id"
+                }
+              },
+              "operation": "=",
+              "table": "user"
+            }
+          ],
+          "conditional": null,
+          "valid": true
+        },
+        "query": "select `user`.`first_name`, `user`.`last_name`, `user`.`email`, `user`.`user_id`, `JOIN1`.`role` from `user` inner join `roles` as `JOIN1` on `JOIN1`.`user_id` = `user`.`user_id` where `user`.`user_id` = ?"
+      }
+    },
+    "output": true,
+    "meta": [
+      {
+        "type": "text",
+        "name": "first_name"
+      },
+      {
+        "type": "text",
+        "name": "last_name"
+      },
+      {
+        "type": "text",
+        "name": "email"
+      },
+      {
+        "type": "number",
+        "name": "user_id"
+      },
+      {
+        "type": "text",
+        "name": "role"
+      }
+    ],
+    "outputType": "object"
+  }
+]

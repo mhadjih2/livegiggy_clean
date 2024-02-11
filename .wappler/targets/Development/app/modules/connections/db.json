@@ -1,0 +1,13 @@
+{
+  "name": "db",
+  "module": "dbconnector",
+  "action": "connect",
+  "options": {
+    "client": "sqlite3",
+    "connection": {
+      "filename": "/database3.sqlite3"
+    },
+    "tz": "utc"
+  },
+  "fileName": "db.json"
+}
