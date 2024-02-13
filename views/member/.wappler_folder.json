@@ -1,0 +1,10 @@
+{
+  "memberpage.ejs": {
+    "layoutPage": "member-layout",
+    "description": ""
+  },
+  "memberspage.ejs": {
+    "layoutPage": "memberlayout",
+    "description": ""
+  }
+}

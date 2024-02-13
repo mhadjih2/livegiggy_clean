@@ -1,0 +1,13 @@
+{
+  "name": "",
+  "module": "auth",
+  "action": "restrict",
+  "options": {
+    "provider": "testing2",
+    "permissions": [
+      "Member"
+    ],
+    "loginUrl": "/login-page",
+    "forbiddenUrl": "/login-page"
+  }
+}

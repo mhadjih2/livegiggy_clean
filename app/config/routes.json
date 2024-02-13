@@ -51,6 +51,11 @@
       "path": "/testpage",
       "page": "testpage",
       "layout": "main"
+    },
+    {
+      "path": "/member/memberspage",
+      "page": "/member/memberspage",
+      "layout": "memberlayout"
     }
   ],
   "layouts": {
@@ -59,6 +64,9 @@
     },
     "SEO-layout": {
       "exec": "/api/security/is_SEO"
+    },
+    "memberlayout": {
+      "exec": "/api/member/ismember"
     }
   }
 }

@@ -1,0 +1,44 @@
+<!-- Wappler include head-page="layouts/memberlayout" is="dmx-app" id="memberspage" appconnect="local" fontawesome_5="cdn" bootstrap5="darkly" components="{dmxBootstrap5Modal:{},dmxTagify:{}}" -->
+<dmx-serverconnect id="conn_getchannelinfo"></dmx-serverconnect>
+<div class="modal fade bg-dark bg-opacity-10 border-info" id="modal_channeloptions" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-light">
+                <h5 class="modal-title">Channel Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-secondary">
+                <form id="form_optionschannel" is="dmx-serverconnect-form" method="post">
+                    <div class="form-group md-3"> <label for="input1" class="form-label">Your chosen channelname:</label>
+                        <input type="text" class="form-control" id="input1" name="channelname" aria-describedby="input1_help" placeholder="Channelname">
+                        <small id="input1_help" class="form-text text-muted">Think about your name carefully, and get known by your channel-name. You can always change it later though.</small>
+                    </div>
+                    <div class="form-group md-3 mt-3"> <label for="input2" class="form-label">A desciption of your channel:</label>
+                        <input type="text" class="form-control" id="input2" name="channeldescription" aria-describedby="input2_help" placeholder="Give a short description here">
+                    </div>
+                    <input is="dmx-tagify" id="tagify1" name="tagify1">
+                </form>
+            </div>
+            <div class="modal-footer bg-secondary">
+                <button type="button" class="btn btn-secondary bg-dark" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Member's page</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button id="btn1" class="btn text-light bg-secondary" data-bs-toggle="modal" data-bs-target="#modal_channeloptions">Set my Channel Options</button>
+            <button id="btn2" class="btn">Button</button>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/member/memberspage">

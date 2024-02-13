@@ -281,163 +281,15 @@
               "onDelete": "NO ACTION"
             }
           }
-        }
-      },
-      "pagecontent": {
-        "db": {},
-        "columns": {
-          "pagecontent_id": {
-            "db": {
-              "type": "increments",
-              "primary": true,
-              "unique": false,
-              "nullable": false
-            }
-          },
-          "pagetitle": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "pagedescription": {
-            "db": {
-              "type": "text",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "pagecontentonline": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "pagecontentprivate": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "pagedatecreated": {
-            "db": {
-              "type": "datetime",
-              "default": "knex.fn.now()",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "pagecontentdateedited": {
-            "db": {
-              "type": "datetime",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "eventstartdatetime": {
-            "db": {
-              "type": "datetime",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "eventenddatetime": {
-            "db": {
-              "type": "datetime",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "latitude": {
-            "db": {
-              "type": "float",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "longitude": {
-            "db": {
-              "type": "float",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "geocoded": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "creator_id": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "pagetype": {
-            "db": {
-              "type": "string",
-              "maxLength": 1,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "lasteditor_id": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          }
         },
-        "sub": {
-          "pagecontent_comments": "pagecontent_id",
-          "pagecontent_pageimages": "pagecontent_id",
-          "pagecontent_pagevideos": "pagecontent_id"
+        "status": {
+          "deleted": true
         }
       },
       "pagecontent_comments": {
         "db": {},
-        "refs": {
-          "page-content_comment_reactions": "comment_id"
-        },
-        "parent": "pagecontent",
-        "sub": {
-          "pagecontent_comment_reactions": "comments_id"
-        }
-      },
-      "pagecontent_comment_reactions": {
-        "db": {},
-        "parent": "pagecontent_comments"
-      },
-      "pagecontent_pageimages": {
-        "db": {},
-        "parent": "pagecontent"
-      },
-      "pagecontent_pagevideos": {
-        "db": {},
         "columns": {
-          "pagevideos_id": {
+          "comments_id": {
             "db": {
               "type": "increments",
               "primary": true,
@@ -458,7 +310,56 @@
               "onDelete": "CASCADE"
             }
           },
-          "videolink": {
+          "comment": {
+            "db": {
+              "type": "text",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "commentcreator_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "commentflagged": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "commentauthorized": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
+        "refs": {
+          "page-content_comment_reactions": "comment_id"
+        },
+        "parent": "pagecontent"
+      },
+      "pagecontent_pageimages": {
+        "db": {},
+        "columns": {
+          "pageimages_id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "imagelink": {
             "db": {
               "type": "string",
               "maxLength": 255,
@@ -467,34 +368,22 @@
               "nullable": true
             }
           },
-          "videocreator_id": {
+          "pagecontent_id": {
             "db": {
-              "type": "string",
-              "maxLength": 255,
+              "type": "reference",
               "primary": false,
               "unique": false,
-              "nullable": true
+              "nullable": true,
+              "references": "pagecontent_id",
+              "inTable": "pagecontent",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
             }
           },
-          "videoflagged": {
+          "imagecreator_id": {
             "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "videoauthorized": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "videoonline": {
-            "db": {
-              "type": "boolean",
+              "type": "integer",
               "primary": false,
               "unique": false,
               "nullable": true
@@ -502,7 +391,7 @@
           },
           "order": {
             "db": {
-              "type": "float",
+              "type": "integer",
               "default": "0",
               "primary": false,
               "unique": false,
@@ -614,9 +503,451 @@
           }
         },
         "refs": {
-          "page-content_comment_reactions": "user_id",
-          "pagecontent_comment_reactions": "user_id"
+          "page-content_comment_reactions": "user_id"
+        },
+        "sub": {
+          "user_userlikes": "user_id"
         }
+      },
+      "pagecontent_pagevideos": {
+        "db": {},
+        "columns": {
+          "pagevideos_id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "pagecontent_id": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "pagecontent_id",
+              "inTable": "pagecontent",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "videolink": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "videocreator_id": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "videoflagged": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "videoauthorized": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "videoonline": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "order": {
+            "db": {
+              "type": "float",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "livestream": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "viewcount": {
+            "db": {
+              "type": "float",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "likecount": {
+            "db": {
+              "type": "float",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
+        "parent": "pagecontent"
+      },
+      "pagecontent_liveevents": {
+        "columns": {
+          "liveevents_id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "eventname": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "venueaddress": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "venuecity": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "venuename": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "eventstartdate": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "eventendtime": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "latitude": {
+            "db": {
+              "type": "float",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "longitude": {
+            "db": {
+              "type": "float",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "geocoded": {
+            "db": {
+              "type": "boolean",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagecontent_id": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "pagecontent_id",
+              "inTable": "pagecontent",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "eventcreateddate": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "eventcreator_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "eventcancelled": {
+            "db": {
+              "type": "boolean",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "eventfinished": {
+            "db": {
+              "type": "boolean",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
+        "db": {},
+        "tablePrefix": "pagecontent_",
+        "parent": "pagecontent"
+      },
+      "pagecontent": {
+        "db": {},
+        "columns": {
+          "pagecontent_id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "pagetitle": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagedescription": {
+            "db": {
+              "type": "text",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagecontentonline": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagecontentprivate": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagedatecreated": {
+            "db": {
+              "type": "datetime",
+              "default": "knex.fn.now()",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagecontentdateedited": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "creator_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagetype": {
+            "db": {
+              "type": "string",
+              "maxLength": 1,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "lasteditor_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "eventstartdatetime": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "eventenddatetime": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "latitude": {
+            "db": {
+              "type": "float",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "longitude": {
+            "db": {
+              "type": "float",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "geocoded": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagekeywords": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pageviews": {
+            "db": {
+              "type": "float",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
+        "sub": {
+          "pagecontent_comments": "pagecontent_id",
+          "pagecontent_pageimages": "pagecontent_id",
+          "pagecontent_pagevideos": "pagecontent_id",
+          "pagecontent_liveevents": "pagecontent_id"
+        },
+        "refs": {
+          "user_userlikes": "pagecontent_id"
+        }
+      },
+      "user_userlikes": {
+        "columns": {
+          "user_id": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "user_id",
+              "inTable": "user",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "reaction": {
+            "db": {
+              "type": "string",
+              "maxLength": 1,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagecontent_id": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "pagecontent_id",
+              "inTable": "pagecontent",
+              "referenceType": "integer",
+              "onUpdate": "NO ACTION",
+              "onDelete": "NO ACTION"
+            }
+          }
+        },
+        "db": {},
+        "tablePrefix": "user_",
+        "multiReference": true,
+        "parent": "user"
       }
     },
     "views": {}
