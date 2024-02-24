@@ -211,7 +211,7 @@
             ],
             "table": "seo",
             "returning": "seo_id",
-            "query": "insert into `seo` (`canonical`, `description`, `keywords`, `og_description`, `og_image`, `og_sitename`, `og_title`, `og_type`, `og_url`, `pagename`, `robots`, `title`, `twitter_creator`, `twitter_description`, `twitter_image`, `twitter_site`, `twitter_title`, `twitter_url`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "query": "insert into `seo` (`canonical`, `description`, `keywords`, `og_description`, `og_image`, `og_sitename`, `og_title`, `og_type`, `og_url`, `pagename`, `robots`, `title`, `twitter_creator`, `twitter_description`, `twitter_image`, `twitter_site`, `twitter_title`, `twitter_url`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning `seo_id`",
             "params": [
               {
                 "name": ":P1",

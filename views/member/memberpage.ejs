@@ -1,0 +1,25 @@
+<!-- Wappler include head-page="layouts/memberlayout" is="dmx-app" id="memberspage" appconnect="local" fontawesome_5="cdn" bootstrap5="darkly" components="{dmxBootstrap5Modal:{},dmxTagify:{}}" -->
+<dmx-serverconnect id="conn_putdatabase" url="/api/misty/insertcode"></dmx-serverconnect>
+<dmx-serverconnect id="conn_mistyauth_db" url="/api/misty/mistyauth"></dmx-serverconnect>
+<header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Member's Page</h1>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <small class="text-muted" dmx-text="browser1.userAgent">With faded secondary text</small>
+        </div>
+    </div>
+</div>
+
+
+
+
+<meta name="ac:route" content="/member/memberpage">

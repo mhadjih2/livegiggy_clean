@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/member/memberpage.ejs",
+      "linkedForm": null
+    },
+    "$_POST": [
+      {
+        "type": "json",
+        "name": "command",
+        "sub": [
+          {
+            "type": "text",
+            "ui": {
+              "label": "authorize"
+            },
+            "name": "authorize"
+          },
+          {
+            "type": "text",
+            "ui": {
+              "label": "username"
+            },
+            "name": "username"
+          },
+          {
+            "type": "text",
+            "ui": {
+              "label": "password"
+            },
+            "name": "password"
+          }
+        ]
+      }
+    ]
+  },
+  "exec": {
+    "steps": {
+      "name": "insert",
+      "module": "dbupdater",
+      "action": "insert",
+      "options": {
+        "connection": "db",
+        "sql": {
+          "type": "insert",
+          "values": [
+            {
+              "table": "misty_auth",
+              "column": "command",
+              "type": "json",
+              "value": "{{$_POST.command}}"
+            }
+          ],
+          "table": "misty_auth",
+          "returning": "mistyauth_id",
+          "query": "insert into `misty_auth` (`command`) values (?) returning `mistyauth_id`",
+          "params": [
+            {
+              "name": ":P1",
+              "type": "expression",
+              "value": "{{$_POST.command}}",
+              "test": ""
+            }
+          ]
+        }
+      },
+      "meta": [
+        {
+          "name": "identity",
+          "type": "text"
+        },
+        {
+          "name": "affected",
+          "type": "number"
+        }
+      ]
+    }
+  }
+}

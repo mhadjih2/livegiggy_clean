@@ -42,8 +42,7 @@
             "columns": [
               {
                 "table": "seo",
-                "column": "*",
-                "recid": 1
+                "column": "*"
               }
             ],
             "params": [

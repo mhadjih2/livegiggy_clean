@@ -1,0 +1,63 @@
+<!-- Wappler include head-page="layouts/main" is="dmx-app" id="myaccount" appConnect="local" bootstrap5="local" fontawesome_6="local" components="{dmxBootstrap5TableGenerator:{},dmxFormatter:{}}" -->
+<dmx-toggle id="toggle1"></dmx-toggle>
+<dmx-serverconnect id="conn_getuserinfo" url="/api/member/getuserinfo"></dmx-serverconnect>
+<div class="container text-light bg-dark">
+    <div class="row text-light bg-dark">
+        <div class="col bg-dark text-light">
+            <div class="table-responsive bg-dark text-light">
+                <table class="table text-light bg-dark">
+                    <tbody dmx-generator="bs5table" dmx-populate="conn_getuserinfo.data.query" class="text-light">
+                        <tr>
+                            <th>First name</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].first_name"></td>
+                        </tr>
+                        <tr>
+                            <th>Last name</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].last_name"></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].email"></td>
+                        </tr>
+                        <tr>
+                            <th>Signup date</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].signup_date"></td>
+                        </tr>
+                        <tr>
+                            <th>Confirmation code</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].confirmation_code"></td>
+                        </tr>
+                        <tr>
+                            <th>Validated date</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].validated_date"></td>
+                        </tr>
+                        <tr>
+                            <th>Cookieconsent</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].cookieconsent"></td>
+                        </tr>
+                        <tr>
+                            <th>Cc date</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].cc_date"></td>
+                        </tr>
+                        <tr>
+                            <th>Mobile</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].mobile"></td>
+                        </tr>
+                        <tr>
+                            <th>Mobileverified</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].mobileverified">
+                                <i class="fa-solid fa-toggle-on fa-2x fa-flip" style="--fa-animation-duration: 1s; --fa-animation-iteration-count: 1;" dmx-hide="(conn_getuserinfo.data.query[0].mobileverified == 1)"></i>
+                                <i class="fa-solid fa-toggle-off fa-2x fa-flip" style="--fa-animation-duration: 1s; --fa-animation-iteration-count: 1;" dmx-show="(conn_getuserinfo.data.query[0].mobileverified == 1)"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Mobileverfdate</th>
+                            <td dmx-text="conn_getuserinfo.data.query[0].mobileverfdate"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<meta name="ac:route" content="/myaccount">

@@ -243,111 +243,6 @@
           }
         }
       },
-      "page-content_comment_reactions": {
-        "db": {},
-        "columns": {
-          "comment_id": {
-            "db": {
-              "type": "reference",
-              "primary": false,
-              "unique": false,
-              "nullable": true,
-              "references": "comment_id",
-              "inTable": "pagecontent_comments",
-              "referenceType": "integer",
-              "onUpdate": "CASCADE",
-              "onDelete": "CASCADE"
-            }
-          },
-          "reaction": {
-            "db": {
-              "type": "string",
-              "maxLength": 1,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "user_id": {
-            "db": {
-              "type": "reference",
-              "primary": false,
-              "unique": false,
-              "nullable": true,
-              "references": "user_id",
-              "inTable": "user",
-              "referenceType": "integer",
-              "onUpdate": "NO ACTION",
-              "onDelete": "NO ACTION"
-            }
-          }
-        },
-        "status": {
-          "deleted": true
-        }
-      },
-      "pagecontent_comments": {
-        "db": {},
-        "columns": {
-          "comments_id": {
-            "db": {
-              "type": "increments",
-              "primary": true,
-              "unique": false,
-              "nullable": false
-            }
-          },
-          "pagecontent_id": {
-            "db": {
-              "type": "reference",
-              "primary": false,
-              "unique": false,
-              "nullable": true,
-              "references": "pagecontent_id",
-              "inTable": "pagecontent",
-              "referenceType": "integer",
-              "onUpdate": "CASCADE",
-              "onDelete": "CASCADE"
-            }
-          },
-          "comment": {
-            "db": {
-              "type": "text",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "commentcreator_id": {
-            "db": {
-              "type": "integer",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "commentflagged": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "commentauthorized": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          }
-        },
-        "refs": {
-          "page-content_comment_reactions": "comment_id"
-        },
-        "parent": "pagecontent"
-      },
       "pagecontent_pageimages": {
         "db": {},
         "columns": {
@@ -410,209 +305,8 @@
         },
         "parent": "pagecontent"
       },
-      "user": {
-        "db": {},
-        "columns": {
-          "user_id": {
-            "db": {
-              "type": "increments",
-              "primary": true,
-              "unique": false,
-              "nullable": false
-            }
-          },
-          "first_name": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "last_name": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "email": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "password": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "signup_date": {
-            "db": {
-              "type": "date",
-              "default": "knex.fn.now()",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "confirmation_code": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "validated_date": {
-            "db": {
-              "type": "datetime",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "cookieconsent": {
-            "db": {
-              "type": "boolean",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true,
-              "default": "0"
-            }
-          },
-          "cc_date": {
-            "db": {
-              "type": "datetime",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          }
-        },
-        "refs": {
-          "page-content_comment_reactions": "user_id"
-        },
-        "sub": {
-          "user_userlikes": "user_id"
-        }
-      },
-      "pagecontent_pagevideos": {
-        "db": {},
-        "columns": {
-          "pagevideos_id": {
-            "db": {
-              "type": "increments",
-              "primary": true,
-              "unique": false,
-              "nullable": false
-            }
-          },
-          "pagecontent_id": {
-            "db": {
-              "type": "reference",
-              "primary": false,
-              "unique": false,
-              "nullable": true,
-              "references": "pagecontent_id",
-              "inTable": "pagecontent",
-              "referenceType": "integer",
-              "onUpdate": "CASCADE",
-              "onDelete": "CASCADE"
-            }
-          },
-          "videolink": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "videocreator_id": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "videoflagged": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "videoauthorized": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "videoonline": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "order": {
-            "db": {
-              "type": "float",
-              "default": "0",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "livestream": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "viewcount": {
-            "db": {
-              "type": "float",
-              "default": "0",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "likecount": {
-            "db": {
-              "type": "float",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          }
-        },
-        "parent": "pagecontent"
-      },
       "pagecontent_liveevents": {
+        "db": {},
         "columns": {
           "liveevents_id": {
             "db": {
@@ -745,10 +439,299 @@
               "unique": false,
               "nullable": true
             }
+          },
+          "cancelled_reason": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
           }
         },
+        "parent": "pagecontent"
+      },
+      "user_userlikes": {
         "db": {},
-        "tablePrefix": "pagecontent_",
+        "columns": {
+          "user_id": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "user_id",
+              "inTable": "user",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "reaction": {
+            "db": {
+              "type": "string",
+              "maxLength": 1,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagecontent_id": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "pagecontent_id",
+              "inTable": "pagecontent",
+              "referenceType": "integer",
+              "onUpdate": "NO ACTION",
+              "onDelete": "NO ACTION"
+            }
+          }
+        },
+        "parent": "user"
+      },
+      "misty_auth": {
+        "db": {},
+        "columns": {
+          "mistyauth_id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "command": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        }
+      },
+      "user": {
+        "db": {},
+        "columns": {
+          "user_id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "first_name": {
+            "db": {
+              "type": "string",
+              "maxLength": 20,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "last_name": {
+            "db": {
+              "type": "string",
+              "maxLength": 20,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "email": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "password": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "signup_date": {
+            "db": {
+              "type": "date",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "confirmation_code": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "validated_date": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "cookieconsent": {
+            "db": {
+              "type": "boolean",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "cc_date": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "mobile": {
+            "db": {
+              "type": "string",
+              "maxLength": 12,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "mobileverified": {
+            "db": {
+              "type": "boolean",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "mobileverfdate": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
+        "sub": {
+          "user_userlikes": "user_id"
+        }
+      },
+      "pagecontent_comments": {
+        "db": {},
+        "columns": {
+          "comments_id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "pagecontent_id": {
+            "db": {
+              "type": "reference",
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "pagecontent_id",
+              "inTable": "pagecontent",
+              "referenceType": "integer",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "comment": {
+            "db": {
+              "type": "text",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "commentcreator_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "commentflagged": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "commentunauthorized": {
+            "db": {
+              "type": "boolean",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "reviewer_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "review_report": {
+            "db": {
+              "type": "text",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "review_date": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "commentflagged_date": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "commentflaggedby_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
         "parent": "pagecontent"
       },
       "pagecontent": {
@@ -837,46 +820,6 @@
               "nullable": true
             }
           },
-          "eventstartdatetime": {
-            "db": {
-              "type": "datetime",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "eventenddatetime": {
-            "db": {
-              "type": "datetime",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "latitude": {
-            "db": {
-              "type": "float",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "longitude": {
-            "db": {
-              "type": "float",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "geocoded": {
-            "db": {
-              "type": "boolean",
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
           "pagekeywords": {
             "db": {
               "type": "string",
@@ -894,40 +837,134 @@
               "unique": false,
               "nullable": true
             }
+          },
+          "pageflagged": {
+            "db": {
+              "type": "boolean",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pageflagger_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pageflagged_date": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "reviewer_id": {
+            "db": {
+              "type": "integer",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "review_date": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "review_notes": {
+            "db": {
+              "type": "text",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "page_unathorized": {
+            "db": {
+              "type": "boolean",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "likecounter": {
+            "db": {
+              "type": "float",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "smilecounter": {
+            "db": {
+              "type": "float",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "cryingcounter": {
+            "db": {
+              "type": "float",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "livestream": {
+            "db": {
+              "type": "boolean",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "reviewmessage_sent": {
+            "db": {
+              "type": "text",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "reviewmessage_date": {
+            "db": {
+              "type": "datetime",
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
           }
         },
         "sub": {
-          "pagecontent_comments": "pagecontent_id",
           "pagecontent_pageimages": "pagecontent_id",
-          "pagecontent_pagevideos": "pagecontent_id",
-          "pagecontent_liveevents": "pagecontent_id"
+          "pagecontent_liveevents": "pagecontent_id",
+          "pagecontent_comments": "pagecontent_id",
+          "pagecontent_pagevideos": "pagecontent_id"
         },
         "refs": {
           "user_userlikes": "pagecontent_id"
         }
       },
-      "user_userlikes": {
+      "pagecontent_pagevideos": {
+        "db": {},
         "columns": {
-          "user_id": {
+          "pagevideos_id": {
             "db": {
-              "type": "reference",
-              "primary": false,
+              "type": "increments",
+              "primary": true,
               "unique": false,
-              "nullable": true,
-              "references": "user_id",
-              "inTable": "user",
-              "referenceType": "integer",
-              "onUpdate": "CASCADE",
-              "onDelete": "CASCADE"
-            }
-          },
-          "reaction": {
-            "db": {
-              "type": "string",
-              "maxLength": 1,
-              "primary": false,
-              "unique": false,
-              "nullable": true
+              "nullable": false
             }
           },
           "pagecontent_id": {
@@ -939,15 +976,70 @@
               "references": "pagecontent_id",
               "inTable": "pagecontent",
               "referenceType": "integer",
-              "onUpdate": "NO ACTION",
-              "onDelete": "NO ACTION"
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "videolink": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "videocreator_id": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "order": {
+            "db": {
+              "type": "float",
+              "default": "0",
+              "primary": false,
+              "unique": false,
+              "nullable": true
             }
           }
         },
+        "parent": "pagecontent"
+      },
+      "pagetypes": {
         "db": {},
-        "tablePrefix": "user_",
-        "multiReference": true,
-        "parent": "user"
+        "columns": {
+          "pagetype_id": {
+            "db": {
+              "type": "increments",
+              "primary": true,
+              "unique": false,
+              "nullable": false
+            }
+          },
+          "pagetype": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "pagetypedescription": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        }
       }
     },
     "views": {}

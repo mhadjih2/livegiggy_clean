@@ -17,10 +17,10 @@
                                 <th>User_id</th>
                                 <th>Role</th>
                                 <th>Rolename</th>
-                                <th scope="row"></th>
+                                <th scope="row">undefined</th>
                             </tr>
                         </thead>
-                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="conn_get_user_roles_present.data.query" id="tableRepeat1">
+                        <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="conn_get_user_roles_present.data.query" id="tableRepeat3">
                             <tr>
                                 <td dmx-text="role_id"></td>
                                 <td dmx-text="user_id"></td>
@@ -119,7 +119,7 @@
     </div>
     <div class="row">
         <div class="col mt-3">
-            <div class="table-responsive" id="user_edit_table">
+            <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover table-sm">
                     <thead>
                         <tr>
@@ -134,7 +134,7 @@
                             <th>Validated date</th>
                         </tr>
                     </thead>
-                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="conn_users.data.query" id="table_main_page_users" dmx-on:click="run({run:{outputType:'text',action:`conn_user_single_roles.load({user_id: user_id})`}})">
+                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="conn_users.data.query" id="tableRepeat2">
                         <tr>
                             <td><button id="btn1" class="btn bg-success w-100" dmx-on:click="conn_get_single_record.load({user_id: user_id});modal_edit_user.show()"><i class="far fa-edit fa-lg"></i></button></td>
                             <td><button id="btn2_role_edit" class="btn bg-warning w-100" dmx-on:click="run([{run:{outputType:'text',action:`conn_get_single_record.load({user_id: user_id})`}},{run:{outputType:'text',action:`conn_get_user_roles_present.load({user_id: user_id})`}},{run:{outputType:'text',action:`conn_get_all_roles_available.load({})`}},{run:{outputType:'text',action:`modal_roles_single_user.show()`}}])"><i class="fas fa-users-cog fa-lg"></i></button></td>

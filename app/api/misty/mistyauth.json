@@ -1,0 +1,251 @@
+{
+  "meta": {
+    "options": {
+      "linkedFile": "/views/member/memberpage.ejs",
+      "linkedForm": "form1"
+    },
+    "$_GET": [
+      {
+        "type": "text",
+        "fieldName": "command",
+        "name": "command"
+      }
+    ],
+    "$_POST": [
+      {
+        "type": "text",
+        "fieldName": "username",
+        "name": "username"
+      },
+      {
+        "type": "text",
+        "fieldName": "password",
+        "name": "password"
+      },
+      {
+        "type": "text",
+        "fieldName": "challenge",
+        "name": "challenge"
+      },
+      {
+        "type": "text",
+        "fieldName": "action",
+        "name": "action"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "single",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "misty_auth",
+                "column": "command",
+                "recid": 1
+              }
+            ],
+            "params": [],
+            "table": {
+              "name": "misty_auth"
+            },
+            "primary": "mistyauth_id",
+            "joins": [],
+            "query": "select `command` from `misty_auth`"
+          }
+        },
+        "output": false,
+        "meta": [
+          {
+            "type": "object",
+            "name": "command"
+          }
+        ],
+        "outputType": "object"
+      },
+      {
+        "name": "api",
+        "module": "api",
+        "action": "send",
+        "options": {
+          "url": "http://localhost:4242/api?command=",
+          "dataType": "json",
+          "schema": [
+            {
+              "type": "array",
+              "name": "data"
+            },
+            {
+              "type": "object",
+              "name": "headers",
+              "sub": [
+                {
+                  "type": "text",
+                  "name": "access-control-allow-credentials"
+                },
+                {
+                  "type": "text",
+                  "name": "access-control-allow-headers"
+                },
+                {
+                  "type": "text",
+                  "name": "access-control-allow-methods"
+                },
+                {
+                  "type": "text",
+                  "name": "access-control-allow-origin"
+                },
+                {
+                  "type": "text",
+                  "name": "access-control-expose-headers"
+                },
+                {
+                  "type": "text",
+                  "name": "access-control-max-age"
+                },
+                {
+                  "type": "text",
+                  "name": "access-control-request-headers"
+                },
+                {
+                  "type": "text",
+                  "name": "access-control-request-method"
+                },
+                {
+                  "type": "text",
+                  "name": "cache-control"
+                },
+                {
+                  "type": "text",
+                  "name": "content-length"
+                },
+                {
+                  "type": "text",
+                  "name": "content-type"
+                },
+                {
+                  "type": "text",
+                  "name": "date"
+                },
+                {
+                  "type": "text",
+                  "name": "expires"
+                },
+                {
+                  "type": "text",
+                  "name": "pragma"
+                },
+                {
+                  "type": "text",
+                  "name": "server"
+                },
+                {
+                  "type": "text",
+                  "name": "strict-transport-security"
+                },
+                {
+                  "type": "text",
+                  "name": "x-served-by"
+                }
+              ]
+            }
+          ],
+          "data": {
+            "push_auto_add": {
+              "stream": "smederijjazz",
+              "target": "/home/mhadjih/streamsnew/smederijjazz_15_02_2024"
+            }
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "type": "array",
+            "name": "data"
+          },
+          {
+            "type": "object",
+            "name": "headers",
+            "sub": [
+              {
+                "type": "text",
+                "name": "access-control-allow-credentials"
+              },
+              {
+                "type": "text",
+                "name": "access-control-allow-headers"
+              },
+              {
+                "type": "text",
+                "name": "access-control-allow-methods"
+              },
+              {
+                "type": "text",
+                "name": "access-control-allow-origin"
+              },
+              {
+                "type": "text",
+                "name": "access-control-expose-headers"
+              },
+              {
+                "type": "text",
+                "name": "access-control-max-age"
+              },
+              {
+                "type": "text",
+                "name": "access-control-request-headers"
+              },
+              {
+                "type": "text",
+                "name": "access-control-request-method"
+              },
+              {
+                "type": "text",
+                "name": "cache-control"
+              },
+              {
+                "type": "text",
+                "name": "content-length"
+              },
+              {
+                "type": "text",
+                "name": "content-type"
+              },
+              {
+                "type": "text",
+                "name": "date"
+              },
+              {
+                "type": "text",
+                "name": "expires"
+              },
+              {
+                "type": "text",
+                "name": "pragma"
+              },
+              {
+                "type": "text",
+                "name": "server"
+              },
+              {
+                "type": "text",
+                "name": "strict-transport-security"
+              },
+              {
+                "type": "text",
+                "name": "x-served-by"
+              }
+            ]
+          }
+        ],
+        "outputType": "object"
+      }
+    ]
+  }
+}

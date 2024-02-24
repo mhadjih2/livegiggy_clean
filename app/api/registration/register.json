@@ -75,6 +75,18 @@
       {
         "type": "text",
         "name": "user_id"
+      },
+      {
+        "type": "text",
+        "fieldName": "checkinput",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            }
+          }
+        },
+        "name": "checkinput"
       }
     ],
     "$_SESSION": [
@@ -173,29 +185,25 @@
                 "table": "user",
                 "column": "first_name",
                 "type": "text",
-                "value": "{{$_POST.first_name}}",
-                "recid": 1
+                "value": "{{$_POST.first_name}}"
               },
               {
                 "table": "user",
                 "column": "last_name",
                 "type": "text",
-                "value": "{{$_POST.last_name}}",
-                "recid": 2
+                "value": "{{$_POST.last_name}}"
               },
               {
                 "table": "user",
                 "column": "email",
                 "type": "text",
-                "value": "{{$_POST.email}}",
-                "recid": 3
+                "value": "{{$_POST.email}}"
               },
               {
                 "table": "user",
                 "column": "password",
                 "type": "text",
-                "value": "{{hash}}",
-                "recid": 4
+                "value": "{{hash}}"
               }
             ],
             "table": "user",
@@ -321,15 +329,13 @@
                 "table": "roles",
                 "column": "user_id",
                 "type": "text",
-                "value": "{{query.user_id}}",
-                "recid": 1
+                "value": "{{query.user_id}}"
               },
               {
                 "table": "roles",
                 "column": "role",
                 "type": "text",
-                "value": "M",
-                "recid": 2
+                "value": "L"
               }
             ],
             "table": "roles",

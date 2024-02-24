@@ -4,5 +4,8 @@
   },
   "memberlayout.ejs": {
     "description": ""
+  },
+  "channellayout.ejs": {
+    "description": ""
   }
 }

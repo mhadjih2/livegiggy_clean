@@ -370,7 +370,12 @@
                   "connection": "db",
                   "sql": {
                     "type": "select",
-                    "columns": [],
+                    "columns": [
+                      {
+                        "table": "seo",
+                        "column": "*"
+                      }
+                    ],
                     "params": [
                       {
                         "operator": "equal",

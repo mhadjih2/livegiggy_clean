@@ -56,6 +56,21 @@
       "path": "/member/memberspage",
       "page": "/member/memberspage",
       "layout": "memberlayout"
+    },
+    {
+      "path": "/resetpassword",
+      "page": "resetpassword",
+      "layout": "main"
+    },
+    {
+      "path": "/resetpassword2",
+      "page": "resetpassword2",
+      "layout": "main"
+    },
+    {
+      "path": "/myaccount",
+      "page": "myaccount",
+      "layout": "main"
     }
   ],
   "layouts": {

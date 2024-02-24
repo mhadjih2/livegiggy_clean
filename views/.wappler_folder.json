@@ -30,5 +30,21 @@
   "testpage.ejs": {
     "layoutPage": "main",
     "description": ""
+  },
+  "resetpassword.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "passwordreset.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "resetpassword2.ejs": {
+    "layoutPage": "main",
+    "description": ""
+  },
+  "myaccount.ejs": {
+    "layoutPage": "main",
+    "description": ""
   }
 }

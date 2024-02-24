@@ -31,7 +31,7 @@
           {
             "column": "role",
             "operator": "=",
-            "value": "P"
+            "value": "M"
           }
         ]
       },
@@ -46,18 +46,18 @@
           }
         ]
       },
-      "Subscriber": {
+      "Listener": {
         "table": "roles",
         "identity": "user_id",
         "conditions": [
           {
             "column": "role",
             "operator": "=",
-            "value": "M"
+            "value": "L"
           }
         ]
       },
-      "Author": {
+      "Musician": {
         "table": "roles",
         "identity": "user_id",
         "conditions": [
@@ -68,14 +68,80 @@
           }
         ]
       },
-      "Editor": {
+      "Reviewer": {
         "table": "roles",
         "identity": "user_id",
         "conditions": [
           {
             "column": "role",
             "operator": "=",
-            "value": "D"
+            "value": "R"
+          }
+        ]
+      },
+      "Commercial": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "C"
+          }
+        ]
+      },
+      "Venue": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "V"
+          }
+        ]
+      },
+      "MemberTier4": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "F"
+          }
+        ]
+      },
+      "MemberTier3": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "G"
+          }
+        ]
+      },
+      "MemberTier2": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "H"
+          }
+        ]
+      },
+      "MemberTier1": {
+        "table": "roles",
+        "identity": "user_id",
+        "conditions": [
+          {
+            "column": "role",
+            "operator": "=",
+            "value": "I"
           }
         ]
       }

@@ -37,8 +37,8 @@
       "type": "local"
     },
     {
-      "name": "fontawesome_4",
-      "type": "cdn"
+      "name": "fontawesome_6",
+      "type": "local"
     }
   ],
   "extensions": []

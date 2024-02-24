@@ -13,5 +13,30 @@ dmx.config({
       ],
       "outputType": "array"
     }
+  },
+  "passwordreset": {
+    "query": [
+      {
+        "type": "text",
+        "name": "email"
+      },
+      {
+        "type": "text",
+        "name": "id"
+      }
+    ]
+  },
+  "resetpassword2": {},
+  "main": {
+    "query": [
+      {
+        "type": "text",
+        "name": "id"
+      },
+      {
+        "type": "text",
+        "name": "email"
+      }
+    ]
   }
 });

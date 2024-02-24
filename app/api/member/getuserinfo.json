@@ -1,0 +1,221 @@
+{
+  "meta": {
+    "$_GET": [
+      {
+        "type": "text",
+        "name": "sort"
+      },
+      {
+        "type": "text",
+        "name": "dir"
+      }
+    ]
+  },
+  "exec": {
+    "steps": [
+      {
+        "name": "",
+        "module": "auth",
+        "action": "restrict",
+        "options": {
+          "provider": "testing2",
+          "permissions": [
+            "Administrator",
+            "Musician",
+            "Reviewer"
+          ],
+          "loginUrl": "/login-page",
+          "forbiddenUrl": "/login-page"
+        }
+      },
+      {
+        "name": "identity",
+        "module": "auth",
+        "action": "identify",
+        "options": {
+          "provider": "testing2"
+        },
+        "output": true,
+        "meta": []
+      },
+      {
+        "name": "query",
+        "module": "dbconnector",
+        "action": "select",
+        "options": {
+          "connection": "db",
+          "sql": {
+            "type": "select",
+            "columns": [
+              {
+                "table": "user",
+                "column": "first_name"
+              },
+              {
+                "table": "user",
+                "column": "last_name"
+              },
+              {
+                "table": "user",
+                "column": "email"
+              },
+              {
+                "table": "user",
+                "column": "signup_date"
+              },
+              {
+                "table": "user",
+                "column": "confirmation_code"
+              },
+              {
+                "table": "user",
+                "column": "validated_date"
+              },
+              {
+                "table": "user",
+                "column": "cookieconsent"
+              },
+              {
+                "table": "user",
+                "column": "cc_date"
+              },
+              {
+                "table": "user",
+                "column": "mobile"
+              },
+              {
+                "table": "user",
+                "column": "mobileverified"
+              },
+              {
+                "table": "user",
+                "column": "mobileverfdate"
+              },
+              {
+                "table": "UserRoles",
+                "column": "role"
+              }
+            ],
+            "params": [
+              {
+                "operator": "equal",
+                "type": "expression",
+                "name": ":P1",
+                "value": "{{identity}}",
+                "test": ""
+              }
+            ],
+            "table": {
+              "name": "user"
+            },
+            "primary": "user_id",
+            "joins": [
+              {
+                "table": "roles",
+                "column": "*",
+                "alias": "UserRoles",
+                "type": "INNER",
+                "clauses": {
+                  "condition": "AND",
+                  "rules": [
+                    {
+                      "table": "UserRoles",
+                      "column": "user_id",
+                      "operator": "equal",
+                      "operation": "=",
+                      "value": {
+                        "table": "user",
+                        "column": "user_id"
+                      }
+                    }
+                  ]
+                },
+                "primary": "role_id"
+              }
+            ],
+            "wheres": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "id": "user.user_id",
+                  "field": "user.user_id",
+                  "type": "double",
+                  "operator": "equal",
+                  "value": "{{identity}}",
+                  "data": {
+                    "table": "user",
+                    "column": "user_id",
+                    "type": "number",
+                    "columnObj": {
+                      "type": "increments",
+                      "primary": true,
+                      "unique": false,
+                      "nullable": false,
+                      "name": "user_id"
+                    }
+                  },
+                  "operation": "="
+                }
+              ],
+              "conditional": null,
+              "valid": true
+            },
+            "query": "select `user`.`first_name`, `user`.`last_name`, `user`.`email`, `user`.`signup_date`, `user`.`confirmation_code`, `user`.`validated_date`, `user`.`cookieconsent`, `user`.`cc_date`, `user`.`mobile`, `user`.`mobileverified`, `user`.`mobileverfdate`, `UserRoles`.`role` from `user` inner join `roles` as `UserRoles` on `UserRoles`.`user_id` = `user`.`user_id` where `user`.`user_id` = ?"
+          }
+        },
+        "output": true,
+        "meta": [
+          {
+            "type": "text",
+            "name": "first_name"
+          },
+          {
+            "type": "text",
+            "name": "last_name"
+          },
+          {
+            "type": "text",
+            "name": "email"
+          },
+          {
+            "type": "date",
+            "name": "signup_date"
+          },
+          {
+            "type": "text",
+            "name": "confirmation_code"
+          },
+          {
+            "type": "datetime",
+            "name": "validated_date"
+          },
+          {
+            "type": "boolean",
+            "name": "cookieconsent"
+          },
+          {
+            "type": "datetime",
+            "name": "cc_date"
+          },
+          {
+            "type": "text",
+            "name": "mobile"
+          },
+          {
+            "type": "boolean",
+            "name": "mobileverified"
+          },
+          {
+            "type": "datetime",
+            "name": "mobileverfdate"
+          },
+          {
+            "type": "text",
+            "name": "role"
+          }
+        ],
+        "outputType": "array"
+      }
+    ]
+  }
+}

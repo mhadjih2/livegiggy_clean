@@ -1,13 +1,13 @@
-<!-- Wappler include head-page="layouts/main" id="Registration" is="dmx-app" appConnect="local" bootstrap5="local" fontawesome_5="cdn" components="{dmxValidator:{},dmxNotifications:{},dmxBrowser:{}}" -->
+<!-- Wappler include head-page="layouts/main" id="Registration" is="dmx-app" appConnect="local" bootstrap5="local" components="{dmxValidator:{},dmxNotifications:{},dmxBrowser:{}}" fontawesome_6="local" -->
 <dmx-serverconnect id="conn_get_uuid" url="/api/registration/reg_code"></dmx-serverconnect>
 <div is="dmx-browser" id="browser1"></div>
 <dmx-notifications id="notifies1"></dmx-notifications>
-<div class="container mt-5 text-secondary bg-dark">
-    <form id="register1" is="dmx-serverconnect-form" method="post" action="/api/registration/register" dmx-on:error="notifies1.danger('Oops, there\'s an error!')" dmx-on:unauthorized="notifies1.warning('Unauthorized Access')" dmx-on:done="notifies1.success('Success! Wait a while for the mail to ben sent to you and we\'ll bring you to the validation page...')" dmx-on:success="browser1.goto('/Validate-Account')">
+<div class="container mt-5">
+    <form id="register1" is="dmx-serverconnect-form" method="post" action="/api/registration/register" dmx-on:error="notifies1.danger('Oops, there\'s an error!')" dmx-on:unauthorized="notifies1.warning('Unauthorized Access')" dmx-on:done="notifies1.success('Success! Wait a while for the mail to be sent to you and we\'ll bring you to the validation page...')" dmx-on:success="notifies1.success('All went well!');browser1.goto('/Validate-Account')">
         <input id="product_id_bot" name="product_id" type="hidden" class="form-control visually-hidden">
         <input id="product_name_bot" name="product_name" type="hidden" class="form-control" dmx-bind:value="conn_get_uuid.data.reg_code">
         <div class="row justify-content-center rounded rounded-2">
-            <div class="col-12 col-md-8 col-lg-8 col-xl-6 border rounded rounded-2 border-info border-2 pt-4 bg-opacity-50">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-6 border rounded rounded-2 border-info border-2 pt-4 bg-opacity-50" style="">
                 <div class="row">
                     <div class="col text-center">
                         <h1>Register</h1>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="row align-items-center">
                     <div class="col mt-4">
-                        <input type="text" id="inp_First_Name" name="first_name" class="form-control" placeholder="First Name" required="">
+                        <input id="inp_First_Name" name="first_name" class="form-control" placeholder="First Name" required="">
                     </div>
                 </div>
                 <div class="row align-items-center">
@@ -41,7 +41,7 @@
                     <div class="col">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" required="">
+                                <input type="checkbox" class="form-check-input" name="checkinput" required="" value="0">
                                 I Read and Accept <a href="/TermsAndConditions" internal="true" target="_blank">Terms and Conditions</a>
                             </label>
                         </div>
