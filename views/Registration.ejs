@@ -2,7 +2,7 @@
 <dmx-serverconnect id="conn_get_uuid" url="/api/registration/reg_code"></dmx-serverconnect>
 <div is="dmx-browser" id="browser1"></div>
 <dmx-notifications id="notifies1"></dmx-notifications>
-<div class="container mt-5">
+<div class="container mt-5 text-light bg-dark">
     <form id="register1" is="dmx-serverconnect-form" method="post" action="/api/registration/register" dmx-on:error="notifies1.danger('Oops, there\'s an error!')" dmx-on:unauthorized="notifies1.warning('Unauthorized Access')" dmx-on:done="notifies1.success('Success! Wait a while for the mail to be sent to you and we\'ll bring you to the validation page...')" dmx-on:success="notifies1.success('All went well!');browser1.goto('/Validate-Account')">
         <input id="product_id_bot" name="product_id" type="hidden" class="form-control visually-hidden">
         <input id="product_name_bot" name="product_name" type="hidden" class="form-control" dmx-bind:value="conn_get_uuid.data.reg_code">

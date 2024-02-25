@@ -50,11 +50,29 @@
 </head>
 
 <body is="dmx-app" id="main" style="--bs-body-bg: #222429;">
-  <div class="modal" id="modal1" is="dmx-bs5-modal" tabindex="-1">
-    <div class="modal-dialog" role="document">
+  <div class="modal fade" id="modal_logout" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header border-bottom-0">
-          <h5 class="modal-title text-info">Change Password</h5>
+          <h4 class="modal-title text-danger">Do you want to logout {{conn_layout_whoami.data.query_who_am_i[0].first_name}}?</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer border-top-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="run({run:{outputType:'text',action:`notifies1.info(\'Well, then stay for a while longer...! Nice!\')`}})">Nope!</button>
+          <button type="button" class="btn ms-2 btn-danger" dmx-on:click="run([{run:{outputType:'text',action:`notifies1.warning(\'You are logged out!\')`}},{wait:{delay:1000}},{run:{outputType:'text',action:`modal_logout.hide()`}},{run:{outputType:'text',action:`browser1.goto(\'/\')`}},{run:{outputType:'text',action:`browser1.reload()`}},{serverConnect:{name:'sc',outputType:'object',url:'/api/registration/logout',site:'testing2'}}])">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal_emailchange" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title text-info">Change Your Emailaddress</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -63,7 +81,7 @@
             <form id="form1" is="dmx-serverconnect-form" method="post" action="/api/registration/update_email">
               <div class="row">
                 <div class="col mb-2">
-                  <div class="form-group text-white-50 mt-2 mb-3">
+                  <div class="form-group text-white-50 mt-2 mb-1">
                     <label for="input2" class="form-label">Your new emailaddress goes here:</label>
                     <input type="text" class="form-control" id="input2" name="input2" aria-describedby="input2_help" placeholder="Your new emailaddress" required="" data-rule-email="">
                     <small id="input2_help" class="form-text text-muted">Your input is very valuable.</small>
@@ -74,7 +92,7 @@
                 <div class="col mb-2">
                   <div class="form-group mb-3 text-white-50">
                     <label for="input1" class="form-label">And for good measures, type it again:</label>
-                    <input type="text" class="form-control" id="input1" name="input1" aria-describedby="input1_help" placeholder="Emailaddress confirmation..." required="" data-rule-email="" data-rule-equalto="input2">
+                    <input type="text" class="form-control" id="input1" name="input1" aria-describedby="input1_help" placeholder="Again to confirm..." required="" data-rule-email="" data-rule-equalto="input2">
                     <small id="input1_help" class="form-text text-muted">Your input is very valuable.</small>
                   </div>
                 </div>
@@ -113,10 +131,10 @@
                     <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].last_name"></td>
                   </tr>
                   <tr>
-                    <th>Emailaddress</th>
+                    <th><i class="fa-solid fa-envelope fa-lg"></i>&nbsp; &nbsp;Email</th>
                     <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].email"></td>
                     <td class="text-warning">
-                      <i class="fa-regular fa-pen-to-square fa-lg fa-fade" style="--fa-animation-delay: 0.5s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1;" dmx-on:click="offcanvas1.hide();modal1.show()"></i>
+                      <i class="fa-regular fa-pen-to-square fa-lg fa-fade" style="--fa-animation-delay: 0.5s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1;" dmx-on:click="offcanvas1.hide();modal_emailchange.show()"></i>
                     </td>
                   </tr>
                   <tr>
@@ -124,19 +142,35 @@
                     <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].validated_date.formatDate('dd-MM-yyyy HH:mm')"></td>
                   </tr>
                   <tr>
-                    <th>Mobile Number</th>
-                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].mobile"></td>
-                  </tr>
-                  <tr>
-                    <th>Mobile Verified</th>
-                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].mobileverified"></td>
-                  </tr>
-                  <tr>
-                    <th>Date Verified</th>
-                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].mobileverfdate"></td>
+                    <th><i class="fa-solid fa-square-phone fa-lg"></i>&nbsp; &nbsp;Mobile</th>
+                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].mobile">{{conn_layout_whoami.data.query_who_am_i[0].mobile}}</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6 class="text-info">You are currently active as:</h6>
+                <div class="row">
+                  <div class="col">
+                    <table class="table table-borderless">
+                      <thead>
+                        <tr>
+                          <th class="text-light"></th>
+                        </tr>
+                      </thead>
+                      <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="conn_layout_whoami.data.query_who_am_i" id="tableRepeat1">
+                        <tr>
+                          <td class="text-success text-end">
+                            <i class="fa-solid fa-check fa-lg"></i>
+                          </td>
+                          <td dmx-text="rolename" class="text-light"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -166,11 +200,11 @@
             <div class="nav-item dropdown"><a class="nav-link dropdown-toggle shadow-sm" href="#" id="navbar1_dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
               <div class="dropdown-menu" aria-labelledby="navbar1_dropdown">
                 <a class="dropdown-item" href="/Registration" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Register</a>
-                <a class="dropdown-item" href="/login-page" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Login</a>
-                <a class="dropdown-item text-danger" href="#" dmx-on:click="run({'bootbox.confirm':{message:'Do you want to log out?',title:'LogoutConfirm',buttons:{confirm:{label:'Logout',className:'btn-danger'},cancel:{label:'Cancel',className:'btn-info'}},backdrop:true,then:{steps:[{serverConnect:{url:'/api/registration/logout',site:'testing2',name:'sc',outputType:'object'}},{'toast.show':{message:'You are logged out...!',delay:2000}},{wait:{delay:2000}},{run:{action:`browser1.goto(\'/\')`,outputType:'text'}}]},else:{steps:[{'toast.show':{message:'Cancelling!',delay:2000}},{wait:{delay:2000}}]},name:'Logout'}})" dmx-show="(conn_layout_whoami.data.identity &gt; 0)">Logout</a>
+                <a class="dropdown-item text-info" href="/login-page" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Login</a>
+                <a class="dropdown-item text-danger" href="#" dmx-show="(conn_layout_whoami.data.identity &gt; 0)" dmx-on:click="modal_logout.show()">Logout</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)" dmx-on:click="offcanvas1.show()">My Account</a>
-                <a class="dropdown-item text-info-emphasis" href="#" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)">Change Password</a>
+                <a class="dropdown-item text-info" href="#" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)" dmx-on:click="offcanvas1.show()">My Account</a>
+                <a class="dropdown-item text-body-tertiary" href="#" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)" dmx-on:click="browser1.goto('/resetpassword')">Change Password</a>
               </div>
             </div>
             <a class="nav-item nav-link" href="#" internal="true">Contact</a>

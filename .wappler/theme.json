@@ -10,7 +10,8 @@
       "input-bg": "#bbb5bd",
       "input-focus-bg": "#d8d4d9",
       "input-focus-color": "#111",
-      "warning": "#f7cd64"
+      "warning": "#f7cd64",
+      "success": "#2a9d8f"
     }
   }
 }
