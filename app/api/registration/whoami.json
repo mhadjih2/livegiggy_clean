@@ -12,7 +12,7 @@
   {
     "name": "query_who_am_i",
     "module": "dbconnector",
-    "action": "single",
+    "action": "select",
     "options": {
       "connection": "db",
       "sql": {
@@ -32,11 +32,31 @@
           },
           {
             "table": "user",
-            "column": "user_id"
+            "column": "validated_date"
+          },
+          {
+            "table": "user",
+            "column": "mobile"
+          },
+          {
+            "table": "user",
+            "column": "mobileverified"
+          },
+          {
+            "table": "user",
+            "column": "mobileverfdate"
           },
           {
             "table": "JOIN1",
-            "column": "role"
+            "column": "*"
+          },
+          {
+            "table": "rolename",
+            "column": "*"
+          },
+          {
+            "table": "user",
+            "column": "user_id"
           }
         ],
         "params": [
@@ -74,6 +94,28 @@
               ]
             },
             "primary": "role_id"
+          },
+          {
+            "table": "authorized_roles",
+            "column": "*",
+            "alias": "rolename",
+            "type": "INNER",
+            "clauses": {
+              "condition": "AND",
+              "rules": [
+                {
+                  "table": "rolename",
+                  "column": "role",
+                  "operator": "equal",
+                  "operation": "=",
+                  "value": {
+                    "table": "JOIN1",
+                    "column": "role"
+                  }
+                }
+              ]
+            },
+            "primary": "authorized_roles_id"
           }
         ],
         "wheres": {
@@ -104,7 +146,7 @@
           "conditional": null,
           "valid": true
         },
-        "query": "select `user`.`first_name`, `user`.`last_name`, `user`.`email`, `user`.`user_id`, `JOIN1`.`role` from `user` inner join `roles` as `JOIN1` on `JOIN1`.`user_id` = `user`.`user_id` where `user`.`user_id` = ?"
+        "query": "select `user`.`first_name`, `user`.`last_name`, `user`.`email`, `user`.`validated_date`, `user`.`mobile`, `user`.`mobileverified`, `user`.`mobileverfdate`, `JOIN1`.*, `rolename`.*, `user`.`user_id` from `user` inner join `roles` as `JOIN1` on `JOIN1`.`user_id` = `user`.`user_id` inner join `authorized_roles` as `rolename` on `rolename`.`role` = `JOIN1`.`role` where `user`.`user_id` = ?"
       }
     },
     "output": true,
@@ -122,14 +164,43 @@
         "name": "email"
       },
       {
+        "type": "datetime",
+        "name": "validated_date"
+      },
+      {
+        "type": "text",
+        "name": "mobile"
+      },
+      {
+        "type": "boolean",
+        "name": "mobileverified"
+      },
+      {
+        "type": "datetime",
+        "name": "mobileverfdate"
+      },
+      {
+        "type": "number",
+        "name": "role_id"
+      },
+      {
         "type": "number",
         "name": "user_id"
       },
       {
         "type": "text",
         "name": "role"
+      },
+      {
+        "type": "number",
+        "name": "authorized_roles_id"
+      },
+      {
+        "type": "text",
+        "name": "rolename"
       }
     ],
-    "outputType": "object"
+    "outputType": "array",
+    "type": "dbconnector_select"
   }
 ]

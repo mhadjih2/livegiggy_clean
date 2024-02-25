@@ -2,18 +2,41 @@
   "meta": {
     "options": {
       "linkedFile": "/views/layouts/main.ejs",
-      "linkedForm": "serverconnectform1"
+      "linkedForm": "form1"
     },
     "$_POST": [
       {
         "type": "text",
-        "fieldName": "inputmail2",
-        "name": "inputmail2"
+        "fieldName": "input2",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            },
+            "core:email": {
+              "param": ""
+            }
+          }
+        },
+        "name": "input2"
       },
       {
         "type": "text",
-        "fieldName": "inputmail1",
-        "name": "inputmail1"
+        "fieldName": "input1",
+        "options": {
+          "rules": {
+            "core:required": {
+              "param": ""
+            },
+            "core:email": {
+              "param": ""
+            },
+            "core:equalTo": {
+              "param": "input2"
+            }
+          }
+        },
+        "name": "input1"
       }
     ]
   },
@@ -42,7 +65,7 @@
                 "table": "user",
                 "column": "email",
                 "type": "text",
-                "value": "{{$_POST.inputmail2}}"
+                "value": "{{$_POST.input1}}"
               }
             ],
             "table": "user",
@@ -70,7 +93,7 @@
               {
                 "name": ":P1",
                 "type": "expression",
-                "value": "{{$_POST.inputmail2}}",
+                "value": "{{$_POST.input1}}",
                 "test": ""
               },
               {
