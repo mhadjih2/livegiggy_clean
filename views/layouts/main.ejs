@@ -78,7 +78,7 @@
           <p>Modal body text goes here.</p>
         </div>
         <div class="modal-footer border-top-0">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="run({run:{outputType:'text',action:`notifies1.info(\'Well, then stay for a while longer...! Nice!\')`}})">Nope!</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="run({run:{outputType:'text',action:`modal_logout.hide()`}})">Nope!</button>
           <button type="button" class="btn ms-2 btn-danger" dmx-on:click="run([{run:{outputType:'text',action:`notifies1.warning(\'You are logged out!\')`}},{wait:{delay:1000}},{run:{outputType:'text',action:`modal_logout.hide()`}},{run:{outputType:'text',action:`browser1.goto(\'/\')`}},{run:{outputType:'text',action:`browser1.reload()`}},{serverConnect:{name:'sc',outputType:'object',url:'/api/registration/logout',site:'testing2'}}])">Logout</button>
         </div>
       </div>
