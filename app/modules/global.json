@@ -205,109 +205,127 @@
                               "table": "seo",
                               "column": "pagename",
                               "type": "text",
-                              "value": "{{$_SERVER.URL}}"
+                              "value": "{{$_SERVER.URL}}",
+                              "recid": 1
                             },
                             {
                               "table": "seo",
                               "column": "description",
                               "type": "text",
-                              "value": "Livegiggy.com for live music and streams"
+                              "value": "Livegiggy.com for live music and streams",
+                              "recid": 2
                             },
                             {
                               "table": "seo",
                               "column": "keywords",
                               "type": "text",
-                              "value": "Livegiggy.com for live music and streams streaming video on demand live-music jamsessions jazz blues rock musicians bands bandpage"
+                              "value": "{{'Livegiggy.com for live music and streams streaming video on demand live-music jamsessions jazz blues rock musicians bands bandpage funk classic acid rnb pop opera reggae ska instrumental album vinyl stage backstage vocal microphone amplifier store artist band rtmp daily new channel own copyrighted ownership revenue earning subscription booking bookingagency agency contacts message instant messaging Groningen 2023 zolder 2024 venue jam session open mic songwriter singer guitar country uncommon radio ucr broadcast recordings sound bandpage live-stream live-gig livegig gig giggy bassplayer guitarist drummer saxophone trumpet software saas service record recording streaming share sharing friends stage onstage video videostreaming rtmp daily new channel own copyrighted ownership '}}",
+                              "recid": 3
                             },
                             {
                               "table": "seo",
                               "column": "title",
                               "type": "text",
-                              "value": "Livegiggy.com for live music and streams"
+                              "value": "Livegiggy.com for live music and streams",
+                              "recid": 4
                             },
                             {
                               "table": "seo",
                               "column": "canonical",
                               "type": "text",
-                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}"
+                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}",
+                              "recid": 5
                             },
                             {
                               "table": "seo",
                               "column": "robots",
                               "type": "text",
-                              "value": "{{$_POST.robots}}"
+                              "value": "{{$_POST.robots}}",
+                              "recid": 6
                             },
                             {
                               "table": "seo",
                               "column": "og_title",
                               "type": "text",
-                              "value": "Livegiggy.com for live music and streams"
+                              "value": "Livegiggy.com for live music and streams",
+                              "recid": 7
                             },
                             {
                               "table": "seo",
                               "column": "og_type",
                               "type": "text",
-                              "value": "Website"
+                              "value": "Website",
+                              "recid": 8
                             },
                             {
                               "table": "seo",
                               "column": "og_description",
                               "type": "text",
-                              "value": "Livegiggy.com for live music and streams"
+                              "value": "Livegiggy.com for live music and streams",
+                              "recid": 9
                             },
                             {
                               "table": "seo",
                               "column": "og_image",
                               "type": "text",
-                              "value": "https://livegiggy.com/assets/images/LIVEGIGGY_logo_xtra_large_1920-×-1080-px.png"
+                              "value": "https://livegiggy.com/assets/images/LIVEGIGGY_logo_xtra_large_1920-×-1080-px.png",
+                              "recid": 10
                             },
                             {
                               "table": "seo",
                               "column": "og_sitename",
                               "type": "text",
-                              "value": "livegiggy.com"
+                              "value": "livegiggy.com",
+                              "recid": 11
                             },
                             {
                               "table": "seo",
                               "column": "twitter_title",
                               "type": "text",
-                              "value": "Livegiggy.com for live music and streams"
+                              "value": "Livegiggy.com for live music and streams",
+                              "recid": 12
                             },
                             {
                               "table": "seo",
                               "column": "twitter_description",
                               "type": "text",
-                              "value": "Livegiggy.com for live music and streams"
+                              "value": "Livegiggy.com for live music and streams",
+                              "recid": 13
                             },
                             {
                               "table": "seo",
                               "column": "twitter_image",
                               "type": "text",
-                              "value": "https://livegiggy.com/assets/images/LIVEGIGGY_logo_xtra_large_1920-×-1080-px.png"
+                              "value": "https://livegiggy.com/assets/images/LIVEGIGGY_logo_xtra_large_1920-×-1080-px.png",
+                              "recid": 14
                             },
                             {
                               "table": "seo",
                               "column": "twitter_site",
                               "type": "text",
-                              "value": "livegiggy.com"
+                              "value": "livegiggy.com",
+                              "recid": 15
                             },
                             {
                               "table": "seo",
                               "column": "twitter_creator",
                               "type": "text",
-                              "value": "livegiggy.com"
+                              "value": "livegiggy.com",
+                              "recid": 16
                             },
                             {
                               "table": "seo",
                               "column": "twitter_url",
                               "type": "text",
-                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}"
+                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}",
+                              "recid": 17
                             },
                             {
                               "table": "seo",
                               "column": "og_url",
                               "type": "text",
-                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}"
+                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}",
+                              "recid": 18
                             }
                           ],
                           "table": "seo",
@@ -323,23 +341,29 @@
                             {
                               "name": ":P2",
                               "type": "expression",
-                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}",
+                              "value": "{{'Livegiggy.com for live music and streams streaming video on demand live-music jamsessions jazz blues rock musicians bands bandpage funk classic acid rnb pop opera reggae ska instrumental album vinyl stage backstage vocal microphone amplifier store artist band rtmp daily new channel own copyrighted ownership revenue earning subscription booking bookingagency agency contacts message instant messaging Groningen 2023 zolder 2024 venue jam session open mic songwriter singer guitar country uncommon radio ucr broadcast recordings sound bandpage live-stream live-gig livegig gig giggy bassplayer guitarist drummer saxophone trumpet software saas service record recording streaming share sharing friends stage onstage video videostreaming rtmp daily new channel own copyrighted ownership '}}",
                               "test": ""
                             },
                             {
                               "name": ":P3",
                               "type": "expression",
-                              "value": "{{$_POST.robots}}",
+                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}",
                               "test": ""
                             },
                             {
                               "name": ":P4",
                               "type": "expression",
-                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}",
+                              "value": "{{$_POST.robots}}",
                               "test": ""
                             },
                             {
                               "name": ":P5",
+                              "type": "expression",
+                              "value": "{{'https://livegiggy.com'+$_SERVER.URL}}",
+                              "test": ""
+                            },
+                            {
+                              "name": ":P6",
                               "type": "expression",
                               "value": "{{'https://livegiggy.com'+$_SERVER.URL}}",
                               "test": ""
@@ -373,7 +397,8 @@
                     "columns": [
                       {
                         "table": "seo",
-                        "column": "*"
+                        "column": "*",
+                        "recid": 1
                       }
                     ],
                     "params": [

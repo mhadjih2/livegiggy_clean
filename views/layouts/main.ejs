@@ -47,22 +47,34 @@
   <script src="/dmxAppConnect/dmxBootstrap5Alert/dmxBootstrap5Alert.js" defer></script>
   <link rel="stylesheet" href="/css/style.css" />
   <script src="/dmxAppConnect/dmxBootstrap5Offcanvas/dmxBootstrap5Offcanvas.js" defer></script>
+  <script src="/dmxAppConnect/dmxDataTraversal/dmxDataTraversal.js" defer></script>
 </head>
 
 <body is="dmx-app" id="main" style="--bs-body-bg: #222429;">
+  <dmx-data-iterator id="iterator1" dmx-bind:data="conn_layout_whoami.data.query_who_am_i" dmx-bind:index="0"></dmx-data-iterator>
   <div class="modal text-light" id="modalmusicianonly" is="dmx-bs5-modal" tabindex="-1">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header border-bottom-0">
           <h5 class="modal-title">Hey, we're sorry, but this is an option for Musicians only...</h5>
-          <button id="btn4" class="btn text-light"><i class="fa-regular fa-circle-xmark fa-fade fa-lg" style="--fa-animation-delay: 0.2s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1; --fa-animation-timing: ease-in;"></i><br></button>
+          <button id="btn4" class="btn text-light" dmx-on:click="modalmusicianonly.hide()"><i class="fa-regular fa-circle-xmark fa-fade fa-lg" style="--fa-animation-delay: 0.2s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1; --fa-animation-timing: ease-in;"></i><br></button>
         </div>
         <div class="modal-body">
-          <p dmx-html="">Modal body text goes here.</p>
+          <div class="row text-lg-center">
+            <div class="col">
+              <p>You can become a member to interact with the musicians, or,<br>&nbsp;if you are a musician: why not register with us and try out our package for free the first month!</p>
+              <div class="row">
+                <div class="col">
+                  <button id="btn6" class="btn btn-sm bg-transparent btn-warning mt-lg-3" dmx-animate-enter="bounce">
+                    <span class="badge bg-dark">instant awesomeness!</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="modal-footer border-top-0">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -211,26 +223,33 @@
         <span class="navbar-text text-info mt-lg-1" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)">Hi {{conn_layout_whoami.data.query_who_am_i[0].first_name}}!</span><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1_collapse" aria-controls="navbar1_collapse" aria-expanded="false" aria-label="Toggle navigation" dmx-animate-inview:60.duration:500.delay:200="bounceIn"><span class="navbar-toggler-icon"></span></button>
 
         <div class="collapse navbar-collapse" id="navbar1_collapse">
-          <div class="navbar-nav justify-content-lg-between ms-lg-auto me-lg-2">
-            <a class="nav-item nav-link active" href="/" internal="true">Home</a>
-            <a class="nav-item nav-link text-info" href="#" dmx-on:click="run({condition:{outputType:'boolean',if:`(conn_layout_whoami.data.query_who_am_i[0].role == \'L\')`}})">Your Channel</a>
+          <div class="navbar-nav ms-lg-auto me-lg-2">
+            <a class="nav-item nav-link active text-light" href="/" internal="true">Home</a>
+            <a class="nav-item nav-link text-warning w-auto shadow" href="#"><i class="fa-solid fa-tv fa-lg"></i>
 
-            <a class="nav-item nav-link" href="#">Channels</a>
-            <a class="nav-item nav-link" href="#">News</a>
-            <a class="nav-item nav-link" href="#">Our Plans</a>
-            <a class="nav-item nav-link" href="#">Shop</a>
-            <a class="nav-item nav-link text-danger" href="#">Go Live!</a>
+              Channels
+            </a>
 
-            <div class="nav-item dropdown"><a class="nav-link dropdown-toggle shadow-sm" href="#" id="navbar1_dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-              <div class="dropdown-menu" aria-labelledby="navbar1_dropdown">
+            <a class="nav-item nav-link text-info" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show()`}}])"><i class="fa-regular fa-circle-play fa-lg"></i>
+              Your Channel</a>
+            <a class="nav-item nav-link text-danger bg-transparent fw-bold" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show();conn_layout_whoami.load({})`}},{wait:{delay:10000}},{run:{outputType:'text',action:`browser1.goto(\'/\')`}}])"><i class="fa-solid fa-microphone-lines fa-lg"></i>
+              Go Live!</a>
+            <a class="nav-item nav-link text-light" href="#">News</a>
+            <a class="nav-item nav-link text-light" href="#">Our Plans</a>
+            <a class="nav-item nav-link text-light" href="#">Shop</a>
+
+            <div class="nav-item dropdown"><a class="nav-link dropdown-toggle shadow-sm text-info" href="#" id="navbar1_dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar1_dropdown">
                 <a class="dropdown-item" href="/Registration" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Register</a>
                 <a class="dropdown-item text-info" href="/login-page" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Login</a>
                 <a class="dropdown-item text-danger" href="#" dmx-show="(conn_layout_whoami.data.identity &gt; 0)" dmx-on:click="modal_logout.show()">Logout</a>
                 <div class="dropdown-divider"></div>
+
                 <a class="dropdown-item text-info" href="#" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)" dmx-on:click="offcanvas1.show()">My Account</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Contact</a>
               </div>
             </div>
-            <a class="nav-item nav-link" href="#" internal="true">Contact</a>
           </div>
         </div>
 
