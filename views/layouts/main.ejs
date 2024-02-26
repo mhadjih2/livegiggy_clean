@@ -234,9 +234,11 @@
               Your Channel</a>
             <a class="nav-item nav-link text-danger bg-transparent fw-bold" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show();conn_layout_whoami.load({})`}},{wait:{delay:10000}},{run:{outputType:'text',action:`browser1.goto(\'/\')`}}])"><i class="fa-solid fa-microphone-lines fa-lg"></i>
               Go Live!</a>
-            <a class="nav-item nav-link text-light" href="#">News</a>
+            <a class="nav-item nav-link text-light" href="#"><i class="fa-solid fa-infinity fa-sm"></i>
+              News</a>
             <a class="nav-item nav-link text-light" href="#">Our Plans</a>
-            <a class="nav-item nav-link text-light" href="#">Shop</a>
+            <a class="nav-item nav-link text-body-emphasis visually-hidden" href="#">
+              Stores<i class="fa-solid fa-store fa-sm fa-fw"></i></a>
 
             <div class="nav-item dropdown"><a class="nav-link dropdown-toggle shadow-sm text-info" href="#" id="navbar1_dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar1_dropdown">
