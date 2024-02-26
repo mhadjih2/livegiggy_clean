@@ -181,7 +181,7 @@
             </div>
             <div class="row">
               <div class="col text-lg-end">
-                <button id="btn5" class="btn btn-danger btn-sm mb-lg-4" dmx-on:click="browser1.goto('/resetpassword')">Change my Password</button>
+                <button id="btn5" class="btn btn-danger mb-lg-4 btn-sm lh-1 fw-light" dmx-on:click="browser1.goto('/resetpassword')">Change my Password</button>
               </div>
             </div>
             <div class="row">
@@ -213,7 +213,7 @@
       </div>
     </div>
   </div>
-  <dmx-notifications id="notifies1"></dmx-notifications>
+  <dmx-notifications id="notifies1" timeout="1000" newest-on-top="true" extended-timeout="500"></dmx-notifications>
   <div is="dmx-browser" id="browser1"></div>
   <dmx-serverconnect id="conn_layout_whoami" url="/api/registration/whoami"></dmx-serverconnect>
   <header>
@@ -230,7 +230,7 @@
               Channels
             </a>
 
-            <a class="nav-item nav-link text-info" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show()`}}])"><i class="fa-regular fa-circle-play fa-lg"></i>
+            <a class="nav-item nav-link text-info" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}},{run:{outputType:'text',action:`iterator1.first()`}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show()`}}])"><i class="fa-regular fa-circle-play fa-lg"></i>
               Your Channel</a>
             <a class="nav-item nav-link text-danger bg-transparent fw-bold" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show();conn_layout_whoami.load({})`}},{wait:{delay:10000}},{run:{outputType:'text',action:`browser1.goto(\'/\')`}}])"><i class="fa-solid fa-microphone-lines fa-lg"></i>
               Go Live!</a>
