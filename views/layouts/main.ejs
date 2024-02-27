@@ -64,9 +64,9 @@
             <div class="col">
               <p>You can become a member to interact with the musicians, or,<br>&nbsp;if you are a musician: why not register with us and try out our package for free the first month!</p>
               <div class="row">
-                <div class="col">
+                <div class="col text-md-center">
                   <button id="btn6" class="btn btn-sm bg-transparent btn-warning mt-lg-3" dmx-animate-enter="bounce">
-                    <span class="badge bg-dark">instant awesomeness!</span>
+                    <span class="badge bg-dark">Instant Awesomeness!</span>
                   </button>
                 </div>
               </div>
@@ -141,7 +141,7 @@
       </div>
     </div>
   </div>
-  <div class="offcanvas offcanvas-end" id="offcanvas1" is="dmx-bs5-offcanvas" tabindex="-1">
+  <div class="offcanvas offcanvas-end rounded rounded-2 border-secondary border-0 opacity-75" id="offcanvas1" is="dmx-bs5-offcanvas" tabindex="-1">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title text-info">Your Account</h5>
       <button id="btn1" class="btn btn-dark bg-transparent shadow-none text-light" dmx-on:click="offcanvas1.hide()"><i class="fa-regular fa-circle-xmark fa-fade fa-lg" style="--fa-animation-delay: .2s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1; --fa-animation-timing: ease-in;"></i></button>
@@ -180,8 +180,8 @@
               </table>
             </div>
             <div class="row">
-              <div class="col text-lg-end">
-                <button id="btn5" class="btn btn-danger mb-lg-4 btn-sm lh-1 fw-light" dmx-on:click="browser1.goto('/resetpassword')">Change my Password</button>
+              <div class="col text-lg-center mb-lg-3 pt-lg-2 pb-lg-4">
+                <button id="btn5" class="btn btn-danger btn-sm lh-1 fw-light mb-lg-2" dmx-on:click="browser1.goto('/resetpassword')">Change my Password</button>
               </div>
             </div>
             <div class="row">
@@ -232,7 +232,7 @@
 
             <a class="nav-item nav-link text-info" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}},{run:{outputType:'text',action:`iterator1.first()`}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show()`}}])"><i class="fa-regular fa-circle-play fa-lg"></i>
               Your Channel</a>
-            <a class="nav-item nav-link text-danger bg-transparent fw-bold" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}},{run:{outputType:'text',action:`iterator1.first()`}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show();conn_layout_whoami.load({})`}},{wait:{delay:10000}},{run:{outputType:'text',action:`browser1.goto(\'/\')`}}])"><i class="fa-solid fa-microphone-lines fa-lg"></i>
+            <a class="nav-item nav-link text-danger bg-transparent fw-bold" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'ID is empty!\')`}}},else:{steps:[{run:{outputType:'text',action:`notifies1.info(\'ID is not empty!\')`}},{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}},{run:{outputType:'text',action:`iterator1.first()`}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show();conn_layout_whoami.load({})`}}])"><i class="fa-solid fa-microphone-lines fa-lg"></i>
               Go Live!</a>
             <a class="nav-item nav-link text-light" href="#"><i class="fa-solid fa-infinity fa-sm"></i>
               News</a>
@@ -242,7 +242,7 @@
 
             <div class="nav-item dropdown"><a class="nav-link dropdown-toggle shadow-sm text-info" href="#" id="navbar1_dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar1_dropdown">
-                <a class="dropdown-item" href="/Registration" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Register</a>
+                <a class="dropdown-item w-auto" href="/Registration" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Register</a>
                 <a class="dropdown-item text-info" href="/login-page" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Login</a>
                 <a class="dropdown-item text-danger" href="#" dmx-show="(conn_layout_whoami.data.identity &gt; 0)" dmx-on:click="modal_logout.show()">Logout</a>
                 <div class="dropdown-divider"></div>
