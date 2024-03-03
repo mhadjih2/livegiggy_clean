@@ -5,7 +5,7 @@
   <base href="/">
   <script src="/dmxAppConnect/dmxAppConnect.js"></script>
   <meta charset="UTF-8">
-  <title>Musicians</title>
+  <title><%=_('\'LiveGiggy \'+global_seo_query_tags.title')%></title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="/bootstrap/5/css/bootstrap.min.css" />
@@ -42,43 +42,188 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="/dmxAppConnect/dmxBootstrap5TableGenerator/dmxBootstrap5TableGenerator.css" />
   <link rel="stylesheet" href="/fontawesome6/css/all.min.css" />
+  <link rel="stylesheet" href="/dmxAppConnect/dmxAnimateCSS/animate.min.css" />
+  <script src="/dmxAppConnect/dmxAnimateCSS/dmxAnimateCSS.js" defer></script>
+  <script src="/dmxAppConnect/dmxBootstrap5Alert/dmxBootstrap5Alert.js" defer></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/dmxAppConnect/dmxBootstrap5Offcanvas/dmxBootstrap5Offcanvas.js" defer></script>
+  <script src="/dmxAppConnect/dmxDataTraversal/dmxDataTraversal.js" defer></script>
 </head>
 
-<body is="dmx-app" id="main">
-  <dmx-notifications id="notifies1"></dmx-notifications>
+<body is="dmx-app" id="main" style="--bs-body-bg: #222429;">
+  <dmx-data-iterator id="iterator1" dmx-bind:data="conn_layout_whoami.data.query_who_am_i" dmx-bind:index="0"></dmx-data-iterator>
+  <div class="modal fade" id="modal_logout" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <h4 class="modal-title text-danger">Do you want to logout {{conn_layout_whoami.data.query_who_am_i[0].first_name}}?</h4>
+          <button id="btn3" class="btn text-light" dmx-on:click="modal_logout.hide()"><i class="fa-regular fa-circle-xmark fa-lg fa-fade" style="--fa-animation-delay: 0.2s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1; --fa-animation-timing: ease-in;"></i><br></button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer border-top-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="run({run:{outputType:'text',action:`modal_logout.hide()`}})">Nope!</button>
+          <button type="button" class="btn ms-2 btn-danger" dmx-on:click="run([{run:{outputType:'text',action:`notifies1.warning(\'You are logged out!\')`}},{wait:{delay:1000}},{run:{outputType:'text',action:`modal_logout.hide()`}},{run:{outputType:'text',action:`browser1.goto(\'/\')`}},{run:{outputType:'text',action:`browser1.reload()`}},{serverConnect:{name:'sc',outputType:'object',url:'/api/registration/logout',site:'testing2'}}])">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modal_emailchange" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header border-bottom-0 mt-3">
+
+          <h5 class="modal-title text-info">Change Your Emailaddress</h5><button id="btn2" class="btn text-light" dmx-on:click="modal_emailchange.hide();form1.reset()">
+            <i class="fa-regular fa-circle-xmark fa-lg fa-fade" style="--fa-animation-delay: .2s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1; --fa-animation-timing: ease-in;"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6 class="text-light mb-4">Your current email is: {{conn_layout_whoami.data.query_who_am_i[0].email}}</h6>
+          <div class="container">
+            <form id="form1" is="dmx-serverconnect-form" method="post" action="/api/registration/update_email">
+              <div class="row">
+                <div class="col mb-2">
+                  <div class="form-group text-white-50 mt-2 mb-1">
+                    <label for="input2" class="form-label">Your new emailaddress goes here:</label>
+                    <input type="text" class="form-control" id="input2" name="input2" aria-describedby="input2_help" placeholder="Your new emailaddress" required="" data-rule-email="">
+                    <small id="input2_help" class="form-text text-muted">Your input is very valuable.</small>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-2">
+                  <div class="form-group mb-3 text-white-50">
+                    <label for="input1" class="form-label">And for good measures, type it again:</label>
+                    <input type="text" class="form-control" id="input1" name="input1" aria-describedby="input1_help" placeholder="Again to confirm..." required="" data-rule-email="" data-rule-equalto="input2">
+                    <small id="input1_help" class="form-text text-muted">Your input is very valuable.</small>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+
+        </div>
+        <div class="modal-footer border-top-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-animate-enter.duration:400.delay:200="fadeIn" dmx-on:click="modal1.hide();form1.reset();notifies1.info('No change made to email...')">Close</button>
+          <button type="submit" class="btn btn-primary" dmx-animate-enter.duration:400.delay:200="fadeIn" dmx-on:click="run([{run:{outputType:'text',action:`form1.submit()`}},{run:{outputType:'text',action:`modal1.hide()`}},{run:{outputType:'text',action:`browser1.reload()`}},{wait:{delay:'3s'}},{run:{outputType:'text',action:`notifies1.success(\'Emailaddress changed!\')`}}])">Save New Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-end rounded rounded-2 border-secondary border-0 opacity-75" id="offcanvas1" is="dmx-bs5-offcanvas" tabindex="-1">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title text-info">Your Account</h5>
+      <button id="btn1" class="btn btn-dark bg-transparent shadow-none text-light" dmx-on:click="offcanvas1.hide()"><i class="fa-regular fa-circle-xmark fa-fade fa-lg" style="--fa-animation-delay: .2s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1; --fa-animation-timing: ease-in;"></i></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="table-responsive">
+              <table class="table table-borderless table-dark">
+                <tbody dmx-generator="bs5table" dmx-populate="conn_layout_whoami.data.query_who_am_i">
+                  <tr>
+                    <th>First name</th>
+                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].first_name"></td>
+                  </tr>
+                  <tr>
+                    <th>Last name</th>
+                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].last_name"></td>
+                  </tr>
+                  <tr>
+                    <th><i class="fa-solid fa-envelope fa-lg"></i>&nbsp; &nbsp;Email</th>
+                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].email"></td>
+                    <td class="text-warning">
+                      <i class="fa-regular fa-pen-to-square fa-lg fa-fade" style="--fa-animation-delay: 0.5s; --fa-animation-duration: 1s; --fa-animation-iteration-count: 1; --fa-animation-timing: ease-in;" dmx-on:click="offcanvas1.hide();modal_emailchange.show()"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Validation date</th>
+                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].validated_date.formatDate('dd-MM-yyyy HH:mm')"></td>
+                  </tr>
+                  <tr>
+                    <th><i class="fa-solid fa-square-phone fa-lg"></i>&nbsp; &nbsp;Mobile</th>
+                    <td dmx-text="conn_layout_whoami.data.query_who_am_i[0].mobile">{{conn_layout_whoami.data.query_who_am_i[0].mobile}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col text-lg-center mb-lg-3 pt-lg-2 pb-lg-4">
+                <button id="btn5" class="btn btn-danger btn-sm lh-1 fw-light mb-lg-2" dmx-on:click="browser1.goto('/resetpassword')">Change my Password</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6 class="text-info">You are currently active as:</h6>
+                <div class="row">
+                  <div class="col">
+                    <table class="table table-borderless">
+                      <thead>
+                        <tr>
+                          <th class="text-light"></th>
+                        </tr>
+                      </thead>
+                      <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="conn_layout_whoami.data.query_who_am_i" id="tableRepeat1">
+                        <tr>
+                          <td class="text-success text-end">
+                            <i class="fa-solid fa-check fa-lg"></i>
+                          </td>
+                          <td dmx-text="rolename" class="text-light"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <dmx-notifications id="notifies1" timeout="1000" newest-on-top="true" extended-timeout="500"></dmx-notifications>
   <div is="dmx-browser" id="browser1"></div>
   <dmx-serverconnect id="conn_layout_whoami" url="/api/registration/whoami"></dmx-serverconnect>
   <header>
+
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand ms-2" href="/" internal="true">LiveGiggy</a>
-        <span class="navbar-text text-info mt-lg-1" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)">Hi {{conn_layout_whoami.data.query_who_am_i.first_name}}!
-        </span><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1_collapse" aria-controls="navbar1_collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <span class="navbar-text text-info mt-lg-1" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)">Hi {{conn_layout_whoami.data.query_who_am_i[0].first_name}}!</span><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1_collapse" aria-controls="navbar1_collapse" aria-expanded="false" aria-label="Toggle navigation" dmx-animate-inview:60.duration:500.delay:200="bounceIn"><span class="navbar-toggler-icon"></span></button>
 
         <div class="collapse navbar-collapse" id="navbar1_collapse">
-          <div class="navbar-nav justify-content-lg-between ms-lg-auto me-lg-2">
-            <a class="nav-item nav-link active" href="/" internal="true">Home</a>
-            <a class="nav-item nav-link text-info" href="#">Your Channel</a>
+          <div class="navbar-nav ms-lg-auto me-lg-2">
+            <a class="nav-item nav-link active text-light" href="/" internal="true">Home</a>
+            <a class="nav-item nav-link text-warning w-auto shadow" href="#"><i class="fa-solid fa-tv fa-lg"></i>
 
-            <a class="nav-item nav-link" href="#">Channels</a>
-            <a class="nav-item nav-link" href="#">Your Stats</a>
-            <a class="nav-item nav-link" href="#">Our Plans</a>
-            <a class="nav-item nav-link" href="#">Shop</a>
-            <a class="nav-item nav-link text-danger" href="#">Go Live!</a>
+              Channels
+            </a>
 
-            <div class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbar1_dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-              <div class="dropdown-menu" aria-labelledby="navbar1_dropdown">
-                <a class="dropdown-item" href="/Registration" internal="true" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Register</a>
-                <a class="dropdown-item" href="/login-page" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Login</a>
-                <a class="dropdown-item" href="#" dmx-on:click="run({'bootbox.confirm':{message:'Do you want to log out?',title:'LogoutConfirm',buttons:{confirm:{label:'Logout',className:'btn-danger'},cancel:{label:'Cancel',className:'btn-info'}},backdrop:true,then:{steps:[{serverConnect:{url:'/api/registration/logout',site:'testing2',name:'sc',outputType:'object'}},{'toast.show':{message:'You are logged out...!',delay:2000}},{wait:{delay:2000}},{run:{action:`browser1.goto(\'/\')`,outputType:'text'}}]},else:{steps:[{'toast.show':{message:'Cancelling!',delay:2000}},{wait:{delay:2000}}]},name:'Logout'}})" dmx-show="(conn_layout_whoami.data.identity &gt; 0)">Logout</a>
+            <a class="nav-item nav-link text-danger bg-transparent fw-bold" href="#" dmx-on:click="run([{run:{outputType:'text',action:`conn_layout_whoami.load({})`}},{condition:{outputType:'boolean',if:`(conn_layout_whoami.data.identity &lt; 1)`,then:{steps:{comment:{msg:'All is cool!\n'}}},else:{steps:[{repeat:{name:'repeat',output:true,outputType:'array',repeat:`conn_layout_whoami.data.query_who_am_i`,outputFields:[],exec:{steps:[{condition:{outputType:'boolean',if:`(iterator1.value.role == \'T\')`,then:{steps:{run:{outputType:'text',action:`notifies1.info(\'Musician!\')`}}}}},{condition:{outputType:'boolean',if:`(iterator1.value.role == \'A\')`,then:{steps:{run:{outputType:'text',action:`notifies1.danger(\'Admin!\')`}}}}},{run:{outputType:'text',action:`iterator1.next()`}}]}}},{run:{outputType:'text',action:`iterator1.first()`}}]}}},{run:{outputType:'text',action:`modalmusicianonly.show();conn_layout_whoami.load({})`}}])"><i class="fa-solid fa-microphone-lines fa-lg"></i>
+              Go Live!</a>
+            <a class="nav-item nav-link text-light" href="#"><i class="fa-solid fa-infinity fa-sm"></i>
+              News</a>
+            <a class="nav-item nav-link text-light" href="#">Our Plans</a>
+            <a class="nav-item nav-link text-body-emphasis visually-hidden" href="#">
+              Stores<i class="fa-solid fa-store fa-sm fa-fw"></i></a>
+
+            <div class="nav-item dropdown"><a class="nav-link dropdown-toggle shadow-sm text-info" href="#" id="navbar1_dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar1_dropdown">
+                <a class="dropdown-item w-auto" href="/Registration" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Register</a>
+                <a class="dropdown-item text-info" href="/login-page" dmx-show="(conn_layout_whoami.data.identity &lt; 1)">Login</a>
+                <a class="dropdown-item text-danger" href="#" dmx-show="(conn_layout_whoami.data.identity &gt; 0)" dmx-on:click="modal_logout.show()">Logout</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)">My Account</a>
-                <a class="dropdown-item" href="#" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)">Change Password</a>
+
+                <a class="dropdown-item text-info" href="#" dmx-hide="(conn_layout_whoami.data.identity &lt; 1)" dmx-on:click="offcanvas1.show()">My Account</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Contact</a>
               </div>
             </div>
-            <a class="nav-item nav-link" href="#" internal="true">Contact</a>
           </div>
         </div>
 

@@ -71,6 +71,11 @@
       "path": "/myaccount",
       "page": "myaccount",
       "layout": "main"
+    },
+    {
+      "path": "/musician/musicians",
+      "page": "musician/musicians",
+      "layout": "musicianslayout"
     }
   ],
   "layouts": {
